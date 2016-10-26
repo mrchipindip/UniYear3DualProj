@@ -11,15 +11,16 @@ public class ThirdPersonCamera : MonoBehaviour {
 	[SerializeField]
 	private float smooth;
 	[SerializeField]
-	private Transform follow;
+	public Transform follow;
 	private Vector3 targetPosition;
+
+	public static int health = 10;
 
 	//private float distance = 10;
 
 
 	// Use this for initialization
 	void Start () {
-		follow = GameObject.FindWithTag ("Player").transform;
 
 	}
 	
