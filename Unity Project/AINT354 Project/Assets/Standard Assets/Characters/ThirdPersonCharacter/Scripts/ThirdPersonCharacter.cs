@@ -30,6 +30,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Crouching;
 
 
+
 		void Start()
 		{
 			m_Animator = GetComponent<Animator>();
@@ -40,6 +41,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+		}
+
+		void Update() {
+			if (!m_Rigidbody.isKinematic) {
+				m_Animator.enabled = true;
+			} else { 
+				m_Animator.enabled = false;
+			}
 		}
 
 
@@ -142,8 +151,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
 			// which affects the movement speed because of the root motion.
 			if (m_IsGrounded && move.magnitude > 0)
-			{
+			{	
 				m_Animator.speed = m_AnimSpeedMultiplier;
+
 			}
 			else
 			{

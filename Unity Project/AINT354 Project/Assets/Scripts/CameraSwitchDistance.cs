@@ -11,7 +11,10 @@ public class CameraSwitchDistance : MonoBehaviour {
 	private float distance = 0;
 	private float timeToWait = 0;
 
+	public float dividerMultiplier = 1.2f;
+
 	public bool looping = true;
+	private bool finalChanceSwitchOccured = false;
 
 	public void Start() {
 		childCam.enabled = true;
@@ -19,13 +22,24 @@ public class CameraSwitchDistance : MonoBehaviour {
 		StartCoroutine (LoopingWaitTime());
 	}
 
+	public void Update(){
+		CalculateDistance ();
+
+		if (distance < 2 && !finalChanceSwitchOccured && childCam.enabled == false) {
+			finalChanceSwitchOccured = true;
+			SwitchCameras ();
+		}
+	}
+
 
 	IEnumerator LoopingWaitTime(){
 		while (looping) {
-			CalculateDistance ();
-			timeToWait = distance / 1.2f;
-			Debug.Log ("Calling IEnumerator");
-			Debug.Log (distance);
+			if (hunterCam.enabled) {
+				timeToWait = (distance / dividerMultiplier);
+			} else if(childCam.enabled) {
+				timeToWait = (distance / dividerMultiplier) + 2;
+			}
+			Debug.Log (timeToWait);
 			yield return new WaitForSeconds (timeToWait);
 			SwitchCameras ();
 		}
