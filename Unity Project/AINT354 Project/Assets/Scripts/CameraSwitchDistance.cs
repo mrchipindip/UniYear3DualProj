@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CameraSwitchDistance : MonoBehaviour {
@@ -7,6 +8,10 @@ public class CameraSwitchDistance : MonoBehaviour {
 
 	public Transform child;
 	public Transform Hunter;
+
+    public Slider timeRemainingSlider;
+    private float timeRemaining;
+    private bool timeCheck = false;
 
 	private float distance = 0;
 	private float timeToWait = 0;
@@ -29,16 +34,26 @@ public class CameraSwitchDistance : MonoBehaviour {
 			finalChanceSwitchOccured = true;
 			SwitchCameras ();
 		}
-	}
+
+        if (timeCheck == false)
+        {
+            timeRemaining = timeToWait;
+            timeCheck = true;
+        }
+        timeRemainingSlider.value = (timeRemaining - 0) * (1 - 0) / (timeToWait - 0) + 0;
+        timeRemaining -= Time.deltaTime;
+    }
 
 
 	IEnumerator LoopingWaitTime(){
 		while (looping) {
 			if (hunterCam.enabled) {
 				timeToWait = (distance / dividerMultiplier);
+                timeCheck = false;
 			} else if(childCam.enabled) {
 				timeToWait = (distance / dividerMultiplier) + 2;
-			}
+                timeCheck = false;
+            }
 			Debug.Log (timeToWait);
 			yield return new WaitForSeconds (timeToWait);
 			SwitchCameras ();
@@ -59,4 +74,8 @@ public class CameraSwitchDistance : MonoBehaviour {
 		distance = Vector3.Distance (child.position, Hunter.position);
 	}
 
+    private void UpdateTimeBar()
+    {
+        
+    }
 }
