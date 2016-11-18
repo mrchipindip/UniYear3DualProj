@@ -28,12 +28,11 @@ public class CameraSwitchDistance : MonoBehaviour {
 	}
 
 	public void Update(){
-		CalculateDistance ();
 
-		if (distance < 2 && !finalChanceSwitchOccured && childCam.enabled == false) {
-			finalChanceSwitchOccured = true;
-			SwitchCameras ();
-		}
+//		if (distance < 2 && !finalChanceSwitchOccured && childCam.enabled == false) {
+//			finalChanceSwitchOccured = true;
+//			SwitchCameras ();
+//		}
 
         if (timeCheck == false)
         {
@@ -50,11 +49,13 @@ public class CameraSwitchDistance : MonoBehaviour {
 			if (hunterCam.enabled) {
 				timeToWait = (distance / dividerMultiplier);
                 timeCheck = false;
-			} else if(childCam.enabled) {
-				timeToWait = (distance / dividerMultiplier) + 2;
+                CalculateDistance();
+                Debug.Log(timeToWait);
+            } else if(childCam.enabled) {
+				timeToWait = (distance / dividerMultiplier);
                 timeCheck = false;
+                Debug.Log(timeToWait);
             }
-			Debug.Log (timeToWait);
 			yield return new WaitForSeconds (timeToWait);
 			SwitchCameras ();
 		}
