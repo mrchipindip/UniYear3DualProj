@@ -61,8 +61,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
 			if (canRun) {
 				// read inputs
-				h = CrossPlatformInputManager.GetAxis ("Horizontal1");
-				v = CrossPlatformInputManager.GetAxis ("Vertical1");
+				h = CrossPlatformInputManager.GetAxis ("HorizontalChild");
+				v = CrossPlatformInputManager.GetAxis ("VerticalChild");
 				bool crouch = Input.GetKey (KeyCode.C);
 
 				// calculate move direction to pass to character
