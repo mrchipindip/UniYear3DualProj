@@ -2,28 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyPickUp : MonoBehaviour {
+public class ExitDoorUnlock : MonoBehaviour {
 
     private AudioSource soundToPlay;
+    private Rigidbody rb;
+    private bool doorUnlockable = false;
     private bool playerWithinTrigger = false;
-    private MeshRenderer keyMesh;
-    public GameObject exitDoor;
-	// Use this for initialization
-	void Start () {
+    private bool doorAlreadyUnlocked = false;
+    // Use this for initialization
+    void Start () {
         soundToPlay = gameObject.GetComponent<AudioSource>();
-        keyMesh = gameObject.GetComponent<MeshRenderer>();
-	}
+        rb = gameObject.GetComponent<Rigidbody>();
+    }
 	
 	// Update is called once per frame
-	void Update () {
-
-		if(Input.GetKeyDown (KeyCode.E) && playerWithinTrigger == true)
+	void Update ()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && playerWithinTrigger == true && doorAlreadyUnlocked == false)
         {
-            exitDoor.SendMessage("UnlockDoor");
+            rb.isKinematic = false;
+            doorAlreadyUnlocked = true;
             soundToPlay.Play();
-            keyMesh.enabled = false;
         }
-	}
+    }
+
+    void UnlockDoor()
+    {
+        doorUnlockable = true;
+    }
 
     void OnTriggerEnter(Collider other)
     {

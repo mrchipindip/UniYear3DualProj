@@ -1,29 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class KeyPickUp : MonoBehaviour {
+public class LevelFinished : MonoBehaviour {
 
-    private AudioSource soundToPlay;
     private bool playerWithinTrigger = false;
-    private MeshRenderer keyMesh;
-    public GameObject exitDoor;
-	// Use this for initialization
-	void Start () {
-        soundToPlay = gameObject.GetComponent<AudioSource>();
-        keyMesh = gameObject.GetComponent<MeshRenderer>();
+
+    // Use this for initialization
+    void Start () {
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		if(Input.GetKeyDown (KeyCode.E) && playerWithinTrigger == true)
+        if (playerWithinTrigger == true)
         {
-            exitDoor.SendMessage("UnlockDoor");
-            soundToPlay.Play();
-            keyMesh.enabled = false;
+            SceneManager.LoadScene("MainMenu");
         }
-	}
+    }
 
     void OnTriggerEnter(Collider other)
     {
