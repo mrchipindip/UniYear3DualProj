@@ -8,6 +8,7 @@ public class CameraSwitchDistance : MonoBehaviour {
 
 	public Transform child;
 	public Transform Hunter;
+	public AudioSource heartbeat;
 
     public Slider timeRemainingSlider;
     private float timeRemaining;
@@ -15,6 +16,7 @@ public class CameraSwitchDistance : MonoBehaviour {
 
 	private float distance;
 	private float timeToWait = 5;
+	private float tempDist;
 
 	public float dividerMultiplier = 1.2f;
 
@@ -34,8 +36,23 @@ public class CameraSwitchDistance : MonoBehaviour {
             timeRemaining = timeToWait;
             timeCheck = true;
         }
+
+
+		CalculateDistanceUpdate ();
+		heartbeat.pitch = (((tempDist - 6) * -1) / 6) + 3;
+		if (heartbeat.pitch >= 2.7f) {
+			heartbeat.pitch = 2.7f;
+		} else if (heartbeat.pitch <= 0.8f) {
+			heartbeat.pitch = 0.8f;
+		}
         timeRemainingSlider.value = (timeRemaining - 0) * (1 - 0) / (timeToWait - 0) + 0;
         timeRemaining -= Time.deltaTime;
+
+
+
+
+		Debug.Log (heartbeat.pitch);
+
     }
 
 
@@ -79,8 +96,13 @@ public class CameraSwitchDistance : MonoBehaviour {
 		distance = Vector3.Distance (child.position, Hunter.position);
 	}
 
+	public void CalculateDistanceUpdate(){
+		tempDist = Vector3.Distance (child.position, Hunter.position);
+	}
+
     private void UpdateTimeBar()
     {
         
     }
+
 }
