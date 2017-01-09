@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ExitDoorUnlock : MonoBehaviour {
 
-    private AudioSource soundToPlay;
+    public AudioSource soundToPlay;
+    public AudioSource soundToPlay2;
     private Rigidbody rb;
     private bool doorUnlockable = false;
     private bool playerWithinTrigger = false;
@@ -18,11 +19,16 @@ public class ExitDoorUnlock : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerWithinTrigger == true && doorAlreadyUnlocked == false)
+        if (Input.GetKeyDown(KeyCode.E) && playerWithinTrigger == true && doorAlreadyUnlocked == false && doorUnlockable == true)
         {
             rb.isKinematic = false;
             doorAlreadyUnlocked = true;
             soundToPlay.Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && playerWithinTrigger == true && doorAlreadyUnlocked == false && doorUnlockable == false)
+        {
+            soundToPlay2.Play();
         }
     }
 
