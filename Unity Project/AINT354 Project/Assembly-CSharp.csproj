@@ -48,12 +48,16 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AuidoWithAnimator.cs" />
      <Compile Include="Assets\Scripts\CameraSwitchDistance.cs" />
+     <Compile Include="Assets\Scripts\CameraSwitchDistance1.cs" />
+     <Compile Include="Assets\Scripts\DoorCreak.cs" />
      <Compile Include="Assets\Scripts\ExitDoorUnlock.cs" />
      <Compile Include="Assets\Scripts\GameMusic.cs" />
      <Compile Include="Assets\Scripts\HunterCaptureScript.cs" />
      <Compile Include="Assets\Scripts\KeyPickUp.cs" />
      <Compile Include="Assets\Scripts\LevelFinished.cs" />
+     <Compile Include="Assets\Scripts\LevelFinished1.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\RandomKeyPos.cs" />
      <Compile Include="Assets\Scripts\SoundOnImpact.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonUserControl.cs" />
@@ -67,6 +71,9 @@
      <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -81,6 +88,9 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>

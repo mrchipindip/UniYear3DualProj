@@ -34,7 +34,7 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void StartTutorial() {
-		//SceneManager.LoadScene ("");
+		SceneManager.LoadScene ("Tutorial Child");
 	}
 
 	public void ExitGame() {
